@@ -3,7 +3,7 @@ package ua.lviv.shved;
 public class MyClass {
 	public static void main(String args[]) {
 		String s = "Hello";
-		boolean a = true;
+		boolean a = true; 
 		byte b = 1;
 		short c = 65;
 		int d = 22;
