@@ -2,12 +2,22 @@ package ua.lviv.shved.enumeration;
 
 import java.util.Scanner;
 
+/**
+ * @since java 1.8
+ * @author Oleh
+ * @version 1.1
+ * */
+
 public class Application {
+	
+	/* enumeration of seasons */
 
 	enum Seasons {
 		WINTER, SPRING, SUMMER, FALL;
 	}
 
+	/* enumeration of months */
+	
 	enum Month {
 		January(31, Seasons.WINTER), February(28, Seasons.WINTER), March(31, Seasons.SPRING), April(30, Seasons.SPRING),
 		May(31, Seasons.SPRING), June(30, Seasons.SUMMER), July(31, Seasons.SUMMER), August(31, Seasons.SUMMER),
@@ -30,7 +40,14 @@ public class Application {
 			this.se = se;
 		}
 	}
-
+	/**
+	 * @param num of program
+	 * @exception No Exceptions
+	 * @author Oleh
+	 * @return null
+	 * @see java code convention
+	 * */
+	
 	static void menu() {
 		System.out.println("Натичніть 1, щоб перевірити чи є такий місяць");
 		System.out.println("Натичніть 2, щоб вивести всі місяці з такою ж порою року");
@@ -44,21 +61,26 @@ public class Application {
 		System.out.println("Натичніть 10, щоб вивести на екран чи введений з консолі місяць має парну кількість днів");
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws WrongInputConsoleParametersException {
 		Scanner sc = new Scanner(System.in);
+
 		Month[] mArray = Month.values();
+		String message = "Такий місяць не існує(((((";
+		String message2 = "Введеної програми не існує";
+		
+		/* while cycle to run a program */
 
 		while (true) {
 //			menu();
+
 			switch (sc.next()) {
-			
 			case "1": {
 				System.out.println("Вибрано 1 програму");
 				String mSc = sc.next().toUpperCase();
 				boolean flag = isMonthPresent(mArray, mSc);
 
 				if (!flag) {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -84,7 +106,7 @@ public class Application {
 						}
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -103,7 +125,7 @@ public class Application {
 						}
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -122,7 +144,7 @@ public class Application {
 						}
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -141,7 +163,7 @@ public class Application {
 						}
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -159,7 +181,7 @@ public class Application {
 						System.out.println(mArray[order + 1]);
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -177,7 +199,7 @@ public class Application {
 						System.out.println(mArray[order - 1]);
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 			}
@@ -217,7 +239,7 @@ public class Application {
 						System.out.println("Не парний");
 					}
 				} else {
-					System.out.println("Такий місяць не існує(((((");
+					throw new WrongInputConsoleParametersException(message);
 				}
 				break;
 
@@ -226,11 +248,15 @@ public class Application {
 				menu();
 
 			}
+			default:
+				throw new WrongInputConsoleParametersException(message2);
 			}
 		}
 
 	}
-
+	
+	/* method to check if month is present */
+	
 	private static boolean isMonthPresent(Month[] mArray, String mSc) {
 		boolean flag = false;
 
@@ -243,6 +269,8 @@ public class Application {
 		}
 		return flag;
 	}
+	
+	/* method to check to find equal days */
 
 	private static int daysEqual(Month[] mArray, String mSc) {
 		int days = 0;
@@ -256,6 +284,8 @@ public class Application {
 		return days;
 	}
 
+	/* method to check to find order of month */
+	
 	private static int orderIs(Month[] mArray, String mSc) {
 		int order = 0;
 
@@ -267,6 +297,8 @@ public class Application {
 		}
 		return order;
 	}
+	
+	/* method to check if month is even or odd */
 
 	private static boolean isEven(Month[] mArray, String mSc) {
 		boolean even = false;
