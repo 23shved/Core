@@ -13,8 +13,10 @@ public class Main {
 		myArray.add("6");
 		myArray.add("1",1);
 		myArray.removeFrom(1);
-
-
+		myArray.remove(3);
+		myArray.removeFrom(2);
+		
+		
 		System.out.println(myArray.toString());
 		System.out.println(myArray.toString());
 
