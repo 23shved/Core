@@ -1,0 +1,3 @@
+Field type is: String --- and annotation is: Model of your phone
+Field type is: String --- and annotation is: Production country of your phone
+Field type is: int --- and annotation is: Weight of your phone
